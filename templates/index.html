@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Book Recommender System - Discover Your Next Favorite Book">
+    <meta name="description" content="A powerful book recommendation system to help you find your next great read. Explore books, search, and get personalized suggestions.">
+    <meta name="keywords" content="book recommendation, book recommender system, find books, favorite books, personalized book suggestions, best books">
+    <meta name="author" content="Ravi Pandey">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1A202C">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-gray-100 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#" class="text-2xl font-bold text-purple-500">Book Recommender</a>
+            <div class="flex space-x-4">
+                <a href="/" class="hover:text-purple-400">Home</a>
+                <a href="./recommendation" class="hover:text-purple-400">Recommendation</a>
+                <a href="#contact" class="hover:text-purple-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gray-800 text-gray-100 py-16">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-purple-400">Discover Your Next Favorite Book</h1>
+            <p class="text-lg mb-8">Explore personalized recommendations and find books you'll love.</p>
+            <button class="bg-purple-500 px-6 py-3 rounded-lg hover:bg-purple-600 transition">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Top 50 Books -->
+    <section id="top50books" class="py-16 bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-purple-400">Top 50 Books</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Example Book Cards -->
+                {% for i in range(book_title | length) %}
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ image[i] }}" alt="Book Cover" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-purple-400">{{ book_title[i] }}</h3>
+                        <p class="text-sm text-gray-400">by {{ author[i] }}</p>
+                        <p class="text-gray-300 font-bold mt-2">Rating: {{ rating[i].round() }}/10</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="bg-gray-900 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6 text-purple-400">Contact Us</h2>
+            <form action="#" class="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-300">Name</label>
+                    <input type="text" id="name" name="name"
+                           class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300">Email</label>
+                    <input type="email" id="email" name="email"
+                           class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-300">Message</label>
+                    <textarea id="message" name="message" rows="4"
+                              class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+                <button type="submit" class="bg-purple-500 px-6 py-3 w-full rounded-lg hover:bg-purple-600 transition">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Book Recommender System. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Recommendation Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center mb-6 text-purple-400">Recommended Books</h1>
+
+            <form action="/recommend_books" method="POST" class="flex flex-wrap justify-center gap-4 mb-8">
+                <input type="text" name="user_input" placeholder="Enter a book title..."
+                       class="w-full sm:w-2/3 p-3 border border-purple-500 rounded-lg bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                       required>
+                <button type="submit"
+                        class="w-full sm:w-auto bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
+                    Recommend
+                </button>
+            </form>
+
+            {% if error %}
+                <p class="text-red-500 text-center">{{ error }}</p>
+            {% endif %}
+
+            {% if recommendations %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for book in recommendations %}
+                        <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                            <img src="{{ book.image }}" alt="{{ book.title }}" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold text-purple-400">{{ book.title }}</h3>
+                                <p class="text-gray-400">{{ book.author }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+</body>
+</html>
