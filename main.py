@@ -2,11 +2,17 @@ from flask import Flask, render_template, request, jsonify
 import pickle
 import numpy as np
 
-# Load data and models
-top50Books = pickle.load(open('data/top50books.pkl', 'rb'))
-pt = pickle.load(open('data/pt.pkl', 'rb'))
-books = pickle.load(open('data/books.pkl', 'rb'))
-similarity_scores = pickle.load(open('data/similarity_scores.pkl', 'rb'))
+# Load data and models for locally
+# top50Books = pickle.load(open('data/top50books.pkl', 'rb'))
+# pt = pickle.load(open('data/pt.pkl', 'rb'))
+# books = pickle.load(open('data/books.pkl', 'rb'))
+# similarity_scores = pickle.load(open('data/similarity_scores.pkl', 'rb'))
+
+# for render and backend data and models
+top50Books = pickle.load(open('./data/top50books.pkl', 'rb'))
+pt = pickle.load(open('./data/pt.pkl', 'rb'))
+books = pickle.load(open('./data/books.pkl', 'rb'))
+similarity_scores = pickle.load(open('./data/similarity_scores.pkl', 'rb'))
 
 app = Flask(__name__)
 
