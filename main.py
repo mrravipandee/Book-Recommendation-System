@@ -106,5 +106,24 @@ def api_top50_books():
         return jsonify({"status": "error", "message": str(e)})
 
 
+@app.route('/api/get_book_image', methods=['POST'])
+def get_book_image():
+    data = request.json
+    book_title = data.get('book_title', '')
+
+    try:
+        # Find the row where the book title matches
+        book_data = books[books['Book-Title'] == book_title]
+
+        if not book_data.empty:
+            image_url = book_data['Image-URL-M'].values[0]  # Assuming Image-URL-M contains the image path
+            return jsonify({"status": "success", "image_url": image_url})
+        else:
+            return jsonify({"status": "error", "message": "Book not found"})
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
