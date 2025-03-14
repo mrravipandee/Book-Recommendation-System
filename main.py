@@ -123,7 +123,22 @@ def abusive_detection():
     if auth_response:
         return auth_response
 
-    abusive_words = {"badword1", "badword2", "offensiveword"}  # Expand as needed
+    # Set of abusive words in English and Hinglish
+    abusive_words = {
+        # English
+        "idiot", "stupid", "dumb", "moron", "fool", "loser",
+        "nonsense", "jerk", "useless", "trash", "garbage",
+        "dumbass", "jackass", "asshole", "shit", "bastard",
+        "fuck", "fucking", "bullshit", "damn", "crap",
+
+        # Hinglish
+        "chutiya", "gandu", "bhosdike", "madarchod", "behenchod",
+        "lodu", "lawde", "suar", "harami", "kutti", "randi",
+        "kamina", "kutta", "bkl", "bakchod", "tatti", "ullu",
+        "jhantu", "chodna", "chod", "bhand", "bhadwe", "chaman",
+        "bc", "mc"
+    }
+
     text = request.json.get("text", "")
     if not text:
         return jsonify({"status": "error", "message": "Text input required"})
